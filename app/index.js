@@ -25,7 +25,7 @@ module.exports = class Application {
 
     async configDB() {
         // global.Promise = mongoose.Promise; //// When we use this code, there is no need for async await
-        await mongoose.connect('mongodb://localhost/db_test');
+        await mongoose.connect('mongodb://127.0.0.1/db_test');
     }
 
     setConfig() {
