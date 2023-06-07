@@ -3,6 +3,11 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const mongoStore = require('connect-mongo');
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+
 const app = express();
 
 module.exports = class Application {
@@ -38,6 +43,19 @@ module.exports = class Application {
         app.set('layout extractStyles', true);
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended : true}));
+        app.use(session({
+            secret : 'SecretKey',
+            resave : true,
+            saveUninitialized : true,
+            store : mongoStore.create({
+                mongoUrl : 'mongodb://127.0.0.1/db_test',
+            }),
+            cookie : {
+                secure : false, // When we want to use https, it must be true
+            }
+        }));
+        app.use(cookieParser());
+        app.use(flash())
     }
 
     setRoutes() {

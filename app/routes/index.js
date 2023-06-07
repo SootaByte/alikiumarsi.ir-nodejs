@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+// controller
 const HomeRoutes = require('./home');
 const RegisterRoutes = require('./auth/register');
 

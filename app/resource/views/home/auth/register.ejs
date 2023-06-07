@@ -8,5 +8,15 @@
     Password:
     <input type="password" name="password">
     <br>
+    <%- recaptcha %>
+    <br>
     <button type="submit">Register</button>
 </form>
+
+<% if( messages.length > 0 ) { %>
+    <div>
+        <% messages.forEach(err => { %>
+            <%- err %><br>
+        <% }) %>
+    </div>
+<% } %>
